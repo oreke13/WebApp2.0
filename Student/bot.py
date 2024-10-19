@@ -13,13 +13,13 @@ async def start_command(message: types.Message):
 
     # Отправляем данные на сервер Django
     try:
-        response = requests.post('https://eb7b-185-250-30-189.ngrok-free.app/register/',
+        response = requests.post('https://57b2-185-250-30-189.ngrok-free.app/register/',
                                  data={'telegram_id': telegram_id, 'username': username})
 
         # Проверяем успешность регистрации
         if response.status_code == 200 and response.json().get('status') == 'success':
             # Передаем telegram_id через URL для мини-приложения
-            web_app_url = f"https://eb7b-185-250-30-189.ngrok-free.app/?telegram_id={telegram_id}"  # URL мини-приложения с параметром
+            web_app_url = f"https://57b2-185-250-30-189.ngrok-free.app/?telegram_id={telegram_id}"  # URL мини-приложения с параметром
             markup = InlineKeyboardMarkup()
             button = InlineKeyboardButton(text="Open Mini App", web_app=WebAppInfo(url=web_app_url))
             markup.add(button)

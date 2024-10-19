@@ -1,10 +1,8 @@
 from django.contrib.sites import requests
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from .models import Student  # Предполагаем, что у вас есть модель для хранения пользователей
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from .models import Student
 from django.shortcuts import render
 from .models import Student
 
@@ -27,11 +25,27 @@ def register_student(request):
             return JsonResponse({'status': 'error', 'message': 'Invalid data'})
 
     return JsonResponse({'status': 'error', 'message': 'Invalid request method'})
+def dashboard_view(request):
+    # Получаем telegram_id пользователя из параметра запроса
+    telegram_id = request.GET.get('telegram_id')  # telegram_id передается через URL параметр
 
+    try:
+        # Ищем пользователя по telegram_id
+        student = Student.objects.get(telegram_id=telegram_id)
+    except Student.DoesNotExist:
+        student = None
+
+    # Передаем информацию о пользователе в шаблон
+    context = {
+        'student': student
+    }
+
+    return render(request, 'dashboard.html', context)
 
 
 def get_user_data(telegram_id):
     response = requests.get(f'https://your-ngrok-url/get_user_data/{telegram_id}/')
+    print(telegram_id)
     if response.status_code == 200:
         return response.json()  # Возвращает данные пользователя
     return None
@@ -68,19 +82,18 @@ def register_or_update_student(request):
 
 
 def navbar_view(request):
-    # Получаем telegram_id пользователя (в реальном случае это должно приходить от Telegram)
-    telegram_id = request.GET.get('telegram_id')  # Получаем telegram_id через параметры запроса для примера
+    # Получаем telegram_id пользователя из параметра запроса
+    telegram_id = request.GET.get('telegram_id')  # или получить из сессии request.session.get('telegram_id')
 
+    # Найдем пользователя в базе данных
     try:
-        # Ищем пользователя по telegram_id
-        student = Student.objects.get(telegram_id=telegram_id)
+        user = Student.objects.get(telegram_id=telegram_id)
     except Student.DoesNotExist:
-        student = None
+        user = None
 
-    # Передаем информацию о пользователе в шаблон
     context = {
-        'student': student
+        'username': user.username if user else 'Гость',
     }
+    return render(request, 'home.html', context)
 
-    return render(request, 'navbar.html', context)
 

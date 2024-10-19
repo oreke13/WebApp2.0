@@ -1,10 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="kk">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мой город</title>
+    <!-- Загрузка тегов статики -->
+    {% load static %}
+    <!-- Подключение CSS -->
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
 </head>
 <body>
+
+<!-- Включаем верхний navbar -->
+{% include 'navbar.html' %}
+
+<div class="container">
+    <div class="content">
+        <h1>Мой город</h1>
+
+        <div class="city-info">
+            <div class="city-background"></div>
+
+            <div class="city-details">
+                <h2>Город: Алматы</h2>
+                <p><strong>Население:</strong> 1.9 млн человек</p>
+                <p><strong>Область:</strong> Алматинская область</p>
+                <p><strong>Известен как:</strong> культурная столица Казахстана, город яблок</p>
+                <p><strong>Достопримечательности:</strong> Медео, Кок-Тобе, Большое Алматинское Озеро</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Включаем нижнюю навигацию -->
+{% include 'bottom.html' %}
 
 </body>
 </html>

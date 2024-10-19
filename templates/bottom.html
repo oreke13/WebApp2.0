@@ -1,16 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <div class="bottom-nav">
-    <button onclick="openTab('my-lessons')">Мои уроки</button>
-    <button onclick="openTab('test')">Тест</button>
-    <button onclick="openTab('my-city')">Мой город</button>
-    <button onclick="openTab('ai-zhan')">AI_zhan</button>
+<div class="tabs">
+    <a href="/lessons/" class="tab" id="lessons-tab">
+        <img src="https://example.com/lessons-icon.png" alt="Мои уроки">
+        <span>Мои уроки</span>
+    </a>
+    <a href="/test/" class="tab" id="test-tab">
+        <img src="https://example.com/test-icon.png" alt="Тест">
+        <span>Тест</span>
+    </a>
+    <a href="/city/" class="tab" id="city-tab">
+        <img src="https://example.com/city-icon.png" alt="Мой город">
+        <span>Мой город</span>
+    </a>
+    <a href="/ai/" class="tab" id="ai-tab">
+        <img src="https://example.com/ai-icon.png" alt="AI_zhan">
+        <span>AI_zhan</span>
+    </a>
 </div>
 
-</body>
-</html>
+<script>
+    const currentPath = window.location.pathname;
+    const tabs = document.querySelectorAll('.tab');
+
+    tabs.forEach(tab => {
+        if (tab.getAttribute('href') === currentPath) {
+            tab.classList.add('active-tab');
+        }
+    });
+</script>

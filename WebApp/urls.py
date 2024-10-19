@@ -18,12 +18,26 @@ from django.urls import path
 from Student import views
 from django.urls import path
 from django.shortcuts import render
+from django.conf import settings
+from django.conf.urls.static import static
+def lessons_view(request):
+    return render(request, 'lessons.html')
+
+def test_view(request):
+    return render(request, 'test.html')
+
+def city_view(request):
+    return render(request, 'city.html')
 
 urlpatterns = [
     path('register/', views.register_student, name='register_student'),
     path('admin/', admin.site.urls),
     path("", views.index, name='home'),
+    path('lessons/', lessons_view, name='lessons'),
+    path('test/', test_view, name='test'),
+    path('city/', city_view, name='city'),
 ]
 
-
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

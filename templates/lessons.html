@@ -121,6 +121,13 @@
         .topic-checked .topic-check {
             background-color: #00AEEF;
         }
+        .city-background {
+            background: url('/static/images/background.png') no-repeat center center;
+            background-size: cover;
+            height: 100vh;
+            padding: 20px;
+            border-radius: 20px;
+        }
     </style>
 </head>
 <body>
@@ -148,7 +155,7 @@
             <h2 class="topics-header">Тақырыптар</h2>
 
             <div class="accordion">
-                <div class="accordion-item topic-checked">
+                <div class="accordion-item">
                     <div class="accordion-item-header" onclick="toggleAccordion(this)">
                         <div class="topic-title">
                             <span>Глава 1: Введение в блокчейн и основы криптовалют</span>
@@ -176,7 +183,7 @@
                     </div>
                 </div>
 
-                <div class="accordion-item">
+                <div class="accordion-item topic-checked">
                     <div class="accordion-item-header" onclick="toggleAccordion(this)">
                         <div class="topic-title">
                             <span>Глава 3: Регулирование и безопасность криптовалют</span>
@@ -190,7 +197,7 @@
                     </div>
                 </div>
 
-                <div class="accordion-item">
+                <div class="accordion-item topic-checked">
                     <div class="accordion-item-header" onclick="toggleAccordion(this)">
                         <div class="topic-title">
                             <span>Глава 4: Будущее цифровых технологий и криптопреступления</span>
@@ -304,7 +311,7 @@
         } else if (page === 'test') {
             content.innerHTML = '<h2>Тест</h2><p>Выберите тест, который хотите пройти.</p>';
         } else if (page === 'city') {
-            content.innerHTML = '<h2>Мой город</h2><p>Информация о вашем городе.</p>';
+            content.innerHTML = '<div class="city-background"><h2>Мой город</h2><p>Информация о вашем городе.</p></div>';
         } else if (page === 'ai') {
             content.innerHTML = '<h2>AI_zhan</h2><p>Здесь доступен ИИ помощник для вас.</p>';
         }

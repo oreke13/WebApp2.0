@@ -25,26 +25,11 @@ def register_student(request):
             return JsonResponse({'status': 'error', 'message': 'Invalid data'})
 
     return JsonResponse({'status': 'error', 'message': 'Invalid request method'})
-def dashboard_view(request):
-    # Получаем telegram_id пользователя из параметра запроса
-    telegram_id = request.GET.get('telegram_id')  # telegram_id передается через URL параметр
 
-    try:
-        # Ищем пользователя по telegram_id
-        student = Student.objects.get(telegram_id=telegram_id)
-    except Student.DoesNotExist:
-        student = None
-
-    # Передаем информацию о пользователе в шаблон
-    context = {
-        'student': student
-    }
-
-    return render(request, 'dashboard.html', context)
 
 
 def get_user_data(telegram_id):
-    response = requests.get(f'https://your-ngrok-url/get_user_data/{telegram_id}/')
+    response = requests.get(f'https://https://f171-185-250-30-189.ngrok-free.app/get_user_data/{telegram_id}/')
     print(telegram_id)
     if response.status_code == 200:
         return response.json()  # Возвращает данные пользователя
@@ -94,6 +79,12 @@ def navbar_view(request):
     context = {
         'username': user.username if user else 'Гость',
     }
-    return render(request, 'home.html', context)
+    return render(request, 'navbar.html', context)
+
+def lesson(request):
+    context = {
+        'message': 'This is a new page!',
+    }
+    return render(request, 'lesson.html')
 
 

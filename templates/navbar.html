@@ -1,10 +1,31 @@
 <div class="navbar">
-        <div class="user-info">
-            <span>{{ username }}Erkebulan</span>
-        </div>
-        <div class="coins">
-            <span>💰 {{ username }}</span> <!-- Отображаем коины из базы данных -->
-        </div>
-
-
+    <div class="user-info">
+        <span>{{ username }}Erkebulan</span>
+    </div>
+    <div class="coins">
+        <span>💰 {{ coin }} 960</span> <!-- Отображаем коины из базы данных -->
+    </div>
 </div>
+
+<style>
+    .navbar {
+        background-color: #f8f9fa; /* Цвет фона */
+        padding: 15px; /* Внутренние отступы */
+        border-radius: 15px; /* Закругленные углы */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Тень для навбара */
+        display: flex; /* Для выравнивания элементов */
+        justify-content: space-between; /* Элементы на разные стороны */
+        align-items: center; /* Вертикальное выравнивание элементов */
+
+    }
+
+    .user-info {
+        font-size: 16px; /* Размер шрифта */
+        color: #333; /* Цвет текста */
+    }
+
+    .coins {
+        font-size: 16px;
+        color: #333;
+    }
+</style>

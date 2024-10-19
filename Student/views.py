@@ -1,6 +1,7 @@
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from .models import Student  # Предполагаем, что у вас есть модель для хранения пользователей
+from django.shortcuts import render
 
 @csrf_exempt
 def register_student(request):
@@ -19,3 +20,7 @@ def register_student(request):
             return JsonResponse({'status': 'error', 'message': 'Invalid data'})
 
     return JsonResponse({'status': 'error', 'message': 'Invalid request method'})
+
+
+def index(request):
+    return render(request, "lessons.html", )
